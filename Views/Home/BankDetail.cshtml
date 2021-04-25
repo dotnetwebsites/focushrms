@@ -1,0 +1,84 @@
+@model BankAccount
+@{
+    ViewData["Title"] = "Bank Details";
+    ViewData["PageTitle"] = "Bank Details";
+}
+
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="panel panel-bd ">
+            <div class="panel-body">
+                <form method="POST">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    @Html.AntiForgeryToken()
+                    
+                    <div class="form-group col-md-4">
+                        <label asp-for="AccountHolder"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-user" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="AccountHolder" class="form-control" placeholder="Account Holder"/>
+                        </div>                                                
+                        @* <span asp-asp-validation-for="AccountHolder" class="text-danger"></span> *@
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="AccountNo"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-keyboard-o" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="AccountNo" class="form-control" placeholder="Account Number"/>
+                        </div>                                                
+                        
+                        @* <span asp-asp-validation-for="AccountNo" class="text-danger"></span> *@
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="BankName"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-bank" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="BankName" class="form-control" placeholder="Bank Name"/>
+                        </div> 
+                        
+                        @* <span asp-asp-validation-for="BankName" class="text-danger"></span> *@
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="IFSC"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-eye" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="IFSC" class="form-control" placeholder="IFSC Code"/>
+                        </div> 
+                        
+                        @* <span asp-asp-validation-for="IFSC" class="text-danger"></span> *@
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="AccountType"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-book" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="AccountType" class="form-control" placeholder="Account Type"/>
+                        </div> 
+                        
+                        @* <span asp-asp-validation-for="AccountType" class="text-danger"></span> *@
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <a asp-action="Index" class="btn btn-primary">Cancle</a>
+                        <input type="submit" class="btn btn-add" value="Save"/>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,240 @@
+﻿@model ApplicationUserViewModel
+@{
+    ViewData["Title"] = "Employee";
+    ViewData["PageTitle"] = "Personal Information";
+}
+
+<div class="row">
+    <div class="col-sm-12 col-md-3">
+        <div class="card">
+            <div class="card-header">
+                @* <img src="~/assets/dist/img/avatar4.png" alt="" class="img-circle" alt="" width="75" height="75"> *@
+                @{
+                    if (Model.User.ProfileImage != null)
+                    {
+                        <img src="@Model.User.ProfileImage" alt="" class="img-circle" alt="" width="75" height="75">
+                    }
+                    else if (Model.User.Gender == false)
+                    {
+                        <img src="~/assets/dist/img/avatar2.png" alt="" class="img-circle" alt="" width="75" height="75">
+                    }
+                    else
+                    {
+                        <img src="~/assets/dist/img/avatar4.png" alt="" class="img-circle" alt="" width="75" height="75">
+                    }
+                }
+
+            </div>
+            <div class="card-content" style="background: white;">
+                <div class="card-content-member text-center">
+                    <h4 class="m-t-0">@Model.User.FullName</h4>
+                    <p class="m-t-0">@Model.User.Designation, @Model.User.EmployeeCode</p>
+                </div>
+                <hr>
+                <div class="card-content-summary ">
+                    <p><i class="fa fa-envelope"></i>&nbsp; @Model.User.Email </p>
+                    <p><i class="fa fa-user"></i> &nbsp;&nbsp;
+                        @{
+                            if (Model.User.Gender == true)
+                            {
+                                <span>Male</span>
+                            }
+                            else if (Model.User.Gender == false)
+                            {
+                                <span>Female</span>
+                            }
+                            else
+                            {
+                                <span>N/A</span>
+                            }
+                        }
+                    </p>
+                    <p> <i class="fa fa-user-plus"></i>&nbsp;
+                        @Model.User.Department
+                    </p>
+                    <p> <i class="fa fa-calendar"></i> &nbsp;&nbsp;
+                        @Model.User.DateofJoining.ToString("MM/dd/yyyy")
+                    </p>
+                    <p> <i class="fa fa-map-marker"></i> &nbsp;&nbsp;
+                        @Model.User.WorkLocation
+                    </p>
+                </div>
+                <hr>
+                <div class="card-content-summary">
+                    <h5 style="font-weight: bold;" class="m-b-20">STATUTORY DETAILS</h5>
+                    <p>Pan Card No</p>
+                    <p><b>@Model.User.PAN</b> 
+                    @if(Model.User.IsPanConfirmed){
+                        <span class="text-success"> <i>Verified</i></span>
+                    }else{
+                        <span class="text-danger"> <i>Not verified</i></span>
+                    }
+                    </p>
+                    <hr style="margin-left: -20px;"/>
+                    <p>Aadhaar No</p>
+                    <p><b>@Model.User.AadhaarNo?.Substring(0,4) @Model.User.AadhaarNo?.Substring(4,4) @Model.User.AadhaarNo?.Substring(8,4)</b>                  
+                    @if(Model.User.IsAadhaarConfirmed){
+                        <span class="text-success"> <i>Verified</i></span>
+                    }else{
+                        <span class="text-danger"> <i>Not verified</i></span>
+                    }
+                    </p>
+                    <hr style="margin-left: -20px;"/>
+                    <p>Highest Qualification</p>
+
+                    <p><b>@Model.User.HighestQualification</b> 
+                    @if(Model.User.IsDegreeConfirmed){
+                        <span class="text-success"> <i>Verified</i></span>
+                    }else{
+                        <span class="text-danger"> <i>Not verified</i></span>                        
+                    }                
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-9">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="rating-block">
+                    <h4>Personal Information</h4>
+                    <div class="panel-body">
+                        <div class="col-sm-12 col-md-4">
+
+                            <div class="work-touchpoint">
+                                <div class="work-touchpoint-date">
+                                    <i class="fa fa-calendar fa-2x "></i>
+                                </div>
+                            </div>
+                            <div class="detailswork">
+                                <a href="javascript:;" title="headings">Date Of Birth</a> <br>
+                                <p>@Model.User.DateOfBirth?.ToString("MM/dd/yyyy")</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <div class="work-touchpoint">
+                                <div class="work-touchpoint-date">
+                                    <i class="fa fa-mobile-phone fa-2x"></i>
+                                </div>
+                            </div>
+                            <div class="detailswork">
+                                <a href="javascript:;" title="headings">Mobile Number</a> <br>
+                                <p>@Model.User.PhoneNumber</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <div class="work-touchpoint">
+                                <div class="work-touchpoint-date">
+                                    <i class="fa fa-envelope fa-2x  "></i>
+                                </div>
+                            </div>
+                            <div class="detailswork">
+                                <a href="javascript:;" title="headings">Contact Email</a> <br>
+                                <p>@Model.User.Email</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+
+                            <div class="detailswork">
+                                <a href="#" title="headings">Father's Name</a> <br>
+                                <p>@Model.User.FatherName</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-8">
+
+                            <div class="detailswork">
+                                <a href="#" title="headings">Address</a> <br>
+                                <p>@Model.User.Address</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <h4>Payment Information</h4>
+                    <div class="panel-body">
+                        <div class="col-sm-12 col-md-5">
+
+                            <div style='background: #337ab7;padding: 15px;color: white;'>
+                                <p>Payment Mode</p>
+                                <p class="m-b-20"><b>Bank Transfer</b></p>
+                                <p>Account Number</p>
+                                <p><b>
+                                        @if (Model.Account != null && Model.Account.AccountNo != null)
+                                        {
+                                            @Model.Account.AccountNo
+                                        }
+                                        else
+                                        {
+                                            <span>00000000000000</span>
+                                        }
+                                    </b></p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-7">
+                            <table class="table ">
+
+                                <tbody>
+                                    <tr>
+                                        <td>Account Holder Name</td>
+                                        <td>
+                                            @if (Model.Account != null && Model.Account.AccountHolder != null)
+                                            {
+                                                @Model.Account.AccountHolder
+                                            }
+                                            else
+                                            {
+                                                <span>N/A</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bank Name</td>
+                                        <td>
+                                            @if (Model.Account != null && Model.Account.BankName != null)
+                                            {
+                                                @Model.Account.BankName
+                                            }
+                                            else
+                                            {
+                                                <span>N/A</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>IFSC</td>
+                                        <td>
+                                            @if (Model.Account != null && Model.Account.IFSC != null)
+                                            {
+                                                @Model.Account.IFSC
+                                            }
+                                            else
+                                            {
+                                                <span>N/A</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Account Type</td>
+                                        <td>
+                                            @if (Model.Account != null && Model.Account.AccountType != null)
+                                            {
+                                                @Model.Account.AccountType
+                                            }
+                                            else
+                                            {
+                                                <span>N/A</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

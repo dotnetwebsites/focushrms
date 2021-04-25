@@ -1,0 +1,163 @@
+@model PayslipMaster
+@{
+    ViewData["Title"] = "Home Page";
+    ViewData["PageTitle"] = "Payslips";
+}
+
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="panel panel-bd ">
+            <div class="panel-body">
+                <form method="POST">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    
+                    <div class="form-group col-md-3">
+                        @Html.LabelFor(model => model.EmployeeCode)
+                        @Html.DropDownList("EmployeeCode", null, "Select Employee Code", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="Month"></label>
+                        <select asp-for="Month" class="form-control">
+                            <option>January</option>
+                            <option>February</option>
+                            <option>March</option>
+                            <option>April</option>
+                            <option>May</option>
+                            <option>June</option>
+                            <option>July</option>
+                            <option>August</option>
+                            <option>September</option>
+                            <option>October</option>
+                            <option>November</option>
+                            <option>December</option>
+                        </select>
+                        <span asp-asp-validation-for="Month" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="Year"></label>
+                        <select asp-for="Year" class="form-control">
+                            <option>2019</option>
+                            <option>2020</option>
+                            <option selected>2021</option>
+                            <option>2022</option>
+                            <option>2023</option>
+                            <option>2024</option>
+                            <option>2025</option>
+                        </select>
+                        <span asp-asp-validation-for="Year" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="WorkingDays"></label>
+                        <input asp-for="WorkingDays" class="form-control" />
+                        <span asp-asp-validation-for="WorkingDays" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="Basic"></label>
+                        <input asp-for="Basic" class="form-control" />
+                        <span asp-asp-validation-for="Basic" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="HRA"></label>
+                        <input asp-for="HRA" class="form-control" />
+                        <span asp-asp-validation-for="HRA" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="TA"></label>
+                        <input asp-for="TA" class="form-control" />
+                        <span asp-asp-validation-for="TA" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="LTA"></label>
+                        <input asp-for="LTA" class="form-control" />
+                        <span asp-asp-validation-for="LTA" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="CEA"></label>
+                        <input asp-for="CEA" class="form-control" />
+                        <span asp-asp-validation-for="CEA" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="SPL"></label>
+                        <input asp-for="SPL" class="form-control" />
+                        <span asp-asp-validation-for="SPL" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="Arrears"></label>
+                        <input asp-for="Arrears" class="form-control" />
+                        <span asp-asp-validation-for="Arrears" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="MonthlyGross"></label>
+                        <input asp-for="MonthlyGross" class="form-control" />
+                        <span asp-asp-validation-for="MonthlyGross" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="EmpEPF"></label>
+                        <input asp-for="EmpEPF" class="form-control" />
+                        <span asp-asp-validation-for="EmpEPF" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="EmpESI"></label>
+                        <input asp-for="EmpESI" class="form-control" />
+                        <span asp-asp-validation-for="EmpESI" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="TAX"></label>
+                        <input asp-for="TAX" class="form-control" />
+                        <span asp-asp-validation-for="TAX" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="TDS"></label>
+                        <input asp-for="TDS" class="form-control" />
+                        <span asp-asp-validation-for="TDS" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="OtherDeduction"></label>
+                        <input asp-for="OtherDeduction" class="form-control" />
+                        <span asp-asp-validation-for="OtherDeduction" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="TotalDeductions"></label>
+                        <input asp-for="TotalDeductions" class="form-control" />
+                        <span asp-asp-validation-for="TotalDeductions" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="TakeHome"></label>
+                        <input asp-for="TakeHome" class="form-control" />
+                        <span asp-asp-validation-for="TakeHome" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <a asp-action="Index" class="btn btn-primary">Cancle</a>
+                        <input type="submit" class="btn btn-add" value="Save"/>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,48 @@
+@model AppoinmentViewModel
+@{
+    ViewData["Title"] = "Appoinment Letter";
+    ViewData["PageTitle"] = "Appoinment Letter";
+}
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="panel panel-bd ">
+            <div class="panel-body">
+                <div class="form-group">
+                        <label class="col-sm-3 control-label"> Appoinment Letter:</label>
+                        <label class="col-sm-3 control-label">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <form enctype="multipart/form-data" asp-action="Upload" method="POST">
+                                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-6" })
+                                @Html.DropDownList("Username", null,"Select  Appoinment Letter", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                                
+                                 <div class="form-group">
+                                    @Html.LabelFor(model => model.AppoinmentLetterFile, htmlAttributes: new { @class = "control-label col-md-6" })
+                                    <div class="col-md-10 custom-file">
+                                        @Html.EditorFor(model => model.AppoinmentLetterFile, new { htmlAttributes = new { @class = "custom-file-input" } })
+                                        <label class="custom-file-label" for="customFile">Choose file</label> 
+                                        @Html.ValidationMessageFor(model => model.AppoinmentLetterFile, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">  
+                                    @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
+                                    <input type="submit" value="submit" class="btn btn-sm btn-primary rounded-0 text-uppercase" />                                    
+                                </div>  
+                            </form>                            
+                        </label>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{  
+    <script type="text/javascript">  
+        // Add the following code if you want the name of the file appear on select  
+        $(".custom-file-input").on("change", function () {  
+            var fileName = $(this).val().split("\\").pop();  
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);  
+        });  
+    </script>  
+}

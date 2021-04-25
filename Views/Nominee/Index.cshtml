@@ -1,0 +1,126 @@
+@model IEnumerable<Nominee>
+
+@{
+    ViewData["Title"] = "Nominee";
+    ViewData["PageTitle"] = "Nominee";
+}
+
+<h2>Nominee Details</h2>
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="panel panel-bd ">
+            <div class="panel-body">
+                @{
+                    var nominee = Model.FirstOrDefault(p => p.Username == User.Identity.Name);
+                }
+                <div class="col-md-4">
+                    <label>Nominee Full Name</label>
+                    <p>@nominee?.NomineeName</p>
+                </div>
+
+               <div class="col-md-4">
+                    <label>Nominee Date of Birth</label>
+                    <p>@nominee?.DateOfBirth.ToString("MM/dd/yyyy")</p>
+                </div>
+
+               <div class="col-md-4">
+                   <label>Relationship with Employee</label>
+                    <p>@nominee?.Relation</p>
+                </div>
+
+               <div class="col-md-4">
+                    <label>Nominee Contact No</label>
+                    <p>@nominee?.Contact</p>
+                </div>
+
+                <div class="col-md-8">
+                    <label>Nominee Address</label>
+                    <p>@nominee?.Address1, @nominee?.Address2</p>
+                </div>
+
+                <div class="col-md-4">
+                    <label>City</label>
+                    <p>@nominee?.City</p>
+                </div>
+
+                <div class="col-md-4">
+                    <label>State</label>
+                    <p>@nominee?.State</p>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Pincode</label>
+                    <p>@nominee?.Pincode</p>
+                </div>
+
+                <div class="col-md-4">
+                    @Html.ActionLink("Update", "Create", null,
+                               htmlAttributes: new { @class = "btn btn-primary",@Title="Update" })
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Context.Request.Cookies["role"] != null && Context.Request.Cookies["role"].ToString() == "admin")
+{
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="panel panel-bd ">
+                <div class="panel-body">
+                    <div class="table-responsive col-lg-12 m-t-20">
+                        <table id="dataTableExample1" class="table table-bordered table-striped ">
+                            <thead>
+                                <tr class="info">
+                                    <th>@Html.DisplayNameFor(model=>model.NomineeName)</th>
+                                    <th>@Html.DisplayNameFor(model=>model.DateOfBirth)</th>
+                                    <th>@Html.DisplayNameFor(model=>model.Relation)</th>
+                                    <th>@Html.DisplayNameFor(model=>model.Contact)</th>
+                                    <th>@Html.DisplayNameFor(model=>model.City)</th>
+                                    <th>@Html.DisplayNameFor(model=>model.State)</th>
+                                    <th>@Html.DisplayNameFor(model=>model.Pincode)</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NomineeName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DateOfBirth)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Relation)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Contact)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.City)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.State)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Pincode)
+                                        </td>
+
+                                        <td class="text-center" style="display: none;">
+                                            @Html.ActionLink("View", "Detail", new { id = item.Id },
+                                            htmlAttributes: new { @class = "btn btn-primary btn-xs",@Title="View" })
+                                        </td>                                        
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

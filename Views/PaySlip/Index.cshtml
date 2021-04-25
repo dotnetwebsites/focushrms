@@ -1,0 +1,105 @@
+@model IEnumerable<PayslipMaster>
+
+@{
+    ViewData["Title"] = "Home Page";
+    ViewData["PageTitle"] = "Payslips";
+}
+
+@section Scripts{
+    <script>
+        function Search_Click(){            
+            var selectedValue = $('#ddlFinYear :selected').val();
+
+            window.location = "/PaySlip/Search/" + selectedValue;
+        }
+    </script>
+}
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="panel panel-bd ">
+            <div class="panel-body">
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"> <i class="fa fa-filter"></i> Financial
+                            Year:</label>
+                        <div class="col-sm-2">
+                            <select id="ddlFinYear" class="form-control" tabindex="-1" aria-hidden="true">
+                                <option value="2020-2021">2020-2021</option>
+                                <option value="2021-2022">2021-2022</option>
+                                <option value="2022-2023">2022-2023</option>
+                                <option value="2023-2024">2023-2024</option>
+                                <option value="2024-2025">2024-2025</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1 text-center">
+                            @* <a href="/PaySlip/Search/" class="btn btn-add btn-xs">Search</a> *@
+                            <button type="button" onclick="Search_Click()" class="btn btn-add">Search</button>
+
+                            @* <button type="submit" value="1" class="btn btn-add btn-xs">Search</button> *@
+                        </div>
+                        @if (Context.Request.Cookies["role"]!=null && Context.Request.Cookies["role"].ToString() == "admin")
+                        {                        
+                        <div>
+                            <a asp-action="Create" class="btn btn-primary" style="margin-left: 12px;">Add new</a>
+                            <a asp-action="BulkUpload" class="btn btn-primary">Bulk Upload</a>
+                        </div>
+                        }
+                    </div>
+                </form>
+                <div class="table-responsive col-lg-12 m-t-20">
+                    <table id="dataTableExample1" class="example table table-bordered table-striped ">
+                        <thead>
+                            <tr class="info">
+                                <th>@Html.DisplayNameFor(model => model.EmployeeCode)</th>
+                                <th>@Html.DisplayNameFor(model => model.MonthYear)</th>
+                                <th>@Html.DisplayNameFor(model => model.WorkingDays)</th>                                
+                                <th>@Html.DisplayNameFor(model => model.TakeHome)</th>
+                                @if (Context.Request.Cookies["role"]!=null && Context.Request.Cookies["role"].ToString() == "admin")
+                                {
+                                <th></th> 
+                                } 
+                                <th></th>                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                               <tr>
+                                   <td>
+                                       @Html.DisplayFor(modelItem => item.EmployeeCode)
+                                   </td>
+                                   <td>
+                                       @Html.DisplayFor(modelItem => item.MonthYear)
+                                   </td>
+                                   <td>
+                                       @Html.DisplayFor(modelItem => item.WorkingDays)
+                                   </td>
+                                   <td>
+                                       @if(item.TakeHome>0){
+                                           <i class="fa fa-inr"></i>
+                                           @item.TakeHome.ToString("#.00")
+                                       }else{
+                                           <span>0.00</span>
+                                       }
+                                   </td>
+                                   @if (Context.Request.Cookies["role"]!=null && Context.Request.Cookies["role"].ToString() == "admin")
+                                   {
+                                   <td>
+                                       @Html.ActionLink("Edit", "Edit", new { id = item.Id },
+                                        htmlAttributes: new { @class = "btn btn-primary", @Title="Edit" }) 
+                                   </td>
+                                   }
+                                   <td>
+                                       @Html.ActionLink("View", "Detail", new { id = item.Id },
+                                        htmlAttributes: new { @class = "btn btn-primary", @Title="View" }) 
+                                   </td>
+     
+                               </tr> 
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,188 @@
+@model ApplicationUser
+@{
+    ViewData["Title"] = "Manage Profile";
+    ViewData["PageTitle"] = "Manage Profile";    
+}
+
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="panel panel-bd ">
+            <div class="panel-body">
+                <form enctype="multipart/form-data" asp-action="Edit" method="POST">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.Department)
+                    @Html.HiddenFor(model => model.WorkLocation)
+                    
+                    <div class="form-group col-md-4">
+                        <label asp-for="FirstName"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-user" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="FirstName" class="form-control" placeholder="Account Number"/>
+                        </div>
+
+                        
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="MiddleName"></label>
+                        <div class=" input-group col-md-12">
+                        <input asp-for="MiddleName" class="form-control" placeholder="Middle Name"/>
+                        </div>                
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="LastName"></label>
+                        <div class=" input-group col-md-12">
+                        <input asp-for="LastName" class="form-control" placeholder="Last Name"/>
+                        </div>                
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="FatherName"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-user" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="FatherName" class="form-control" placeholder="Father Number"/>
+                        </div>                        
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="Gender"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-mars-double" style="color: #fff!important;"></i>
+                        </span>
+                        <select asp-for="Gender" class="form-control">                            
+                            <option value="true">Male</option>
+                            <option value="false">Female</option>
+                        </select>
+                        </div>                        
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="PhoneNumber"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-phone" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number"/>
+                        </div>                          
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="DateOfBirth"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-calendar" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="DateOfBirth" class="form-control" placeholder="Date of Birth"/>
+                        </div>                        
+                    </div>
+
+                    <div class="form-group col-md-8">
+                        <label asp-for="Address"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-address-card" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="Address" class="form-control" placeholder="Address"/>
+                        </div> 
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="PAN"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-vcard" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="PAN" class="form-control" placeholder="PAN Card No"/>
+                        </div>                        
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="AadhaarNo"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-address-card-o" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="AadhaarNo" class="form-control" placeholder="Aadhaar No"/>
+                        </div>                         
+                    </div>
+                    
+                    <div class="form-group col-md-4">
+                        <label asp-for="HighestQualification"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-calendar" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="HighestQualification" class="form-control" placeholder="Highest Qualification"/>
+                        </div>                        
+                    </div>
+
+                   <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.PanCardCopy, htmlAttributes: new { @class = "control-label col-md-8" })
+                        <div class="col-md-10 custom-file">
+                            @Html.EditorFor(model => model.PanCardCopy, new { htmlAttributes = new { @class = "custom-file-input" } })
+                            <label class="custom-file-label" for="customFile">Choose file</label> 
+                            @Html.ValidationMessageFor(model => model.PanCardCopy, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.AadhaarCopy, htmlAttributes: new { @class = "control-label col-md-8" })
+                        <div class="col-md-10 custom-file">
+                            @Html.EditorFor(model => model.AadhaarCopy, new { htmlAttributes = new { @class = "custom-file-input" } })
+                            <label class="custom-file-label" for="customFile">Choose file</label> 
+                            @Html.ValidationMessageFor(model => model.AadhaarCopy, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.HQCopy, htmlAttributes: new { @class = "control-label col-md-12" })
+                        <div class="col-md-10 custom-file">
+                            @Html.EditorFor(model => model.HQCopy, new { htmlAttributes = new { @class = "custom-file-input" } })
+                            <label class="custom-file-label" for="customFile">Choose file</label> 
+                            @Html.ValidationMessageFor(model => model.HQCopy, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.Avatar, htmlAttributes: new { @class = "control-label col-md-8" })
+                        <div class="col-md-10 custom-file">
+                            @Html.EditorFor(model => model.Avatar, new { htmlAttributes = new { @class = "custom-file-input" } })
+                            <label class="custom-file-label" for="customFile">Choose file</label> 
+                            @Html.ValidationMessageFor(model => model.Avatar, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-md-12">
+                        <a asp-action="Index" class="btn btn-primary">Cancle</a>
+                        <input type="submit" class="btn btn-add" value="Save"/>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{  
+    <partial name="_ValidationScriptsPartial" />
+
+    <script type="text/javascript">  
+        // Add the following code if you want the name of the file appear on select  
+        $(".custom-file-input").on("change", function () {  
+            var fileName = $(this).val().split("\\").pop();  
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);  
+        });  
+    </script>  
+}

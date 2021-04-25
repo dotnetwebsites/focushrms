@@ -1,0 +1,156 @@
+@model IEnumerable<UserDocumentViewModel>
+@{
+    ViewData["Title"] = "Document Verification";
+    ViewData["PageTitle"] = "Document Verification";
+}
+
+@section Scripts{
+    <script>
+        function isConfirm(){
+            if(confirm("Are you sure want to confirm this process."))
+                return true;
+            else
+                return false;
+        }
+        $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var url = button.data('url');
+        var doc = button.data('doc'); // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this);
+        modal.find('.modal-title').text('Doc No : ' + doc);
+        console.log('~' + url);
+        //$('.docFrame').src('~' + url);
+        $('.docFrame').attr('src', url);
+        })
+    </script>
+}
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="panel panel-bd ">
+            <div class="panel-body">
+                <label class="col-sm-3 control-label"> Document Verification</label>
+                <a asp-action="Verification" class="btn btn-warning"> Default Records</a>
+                <a asp-action="AllRecords" class="btn btn-primary"> All Records</a>                
+                <br/>
+                <label>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                </label>                                
+                <div class="table-responsive col-lg-12 m-t-20">
+                    <table class="example table table-bordered table-striped ">
+                            <thead>
+                                <tr class="info">
+                                    <th>Employee Detail</th>
+                                    <th>PAN CARD</th>
+                                    <th>AADHAAR CARD</th>
+                                    <th>HIGHEST QUALIFICATION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int count = 0;
+                                }
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <h3>@Html.DisplayFor(modelItem => item.Users.EmployeeCode)</h3>
+                                            @{
+                                                if (item.Users.ProfileImage != null)
+                                                {
+                                                    <img src="@item.Users.ProfileImage" alt="" class="img-circle" alt="" width="75" height="75">
+                                                }
+                                                else if (item.Users.Gender == false)
+                                                {
+                                                    <img src="~/assets/dist/img/avatar2.png" alt="" class="img-circle" alt="" width="75" height="75">
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/assets/dist/img/avatar4.png" alt="" class="img-circle" alt="" width="75" height="75">
+                                                }
+                                                <br />
+                                                <label>@item.Users.FullName</label>
+                                                <label>@item.Users.Email</label>
+                                            }
+                                        </td>
+                                        <td>
+                                            <h3>@item.Users.PAN</h3>
+                                            <embed src='@item.PanUrl' width="200" height="300"/><br/>
+                                            @if(item.Users.PAN!=null){
+                                            @if(item.Users.IsPanConfirmed){
+                                                <a onclick="return isConfirm()" asp-action="PAN_CancleVarify" asp-route-id="@item.Users.EmployeeCode" class="btn btn-warning" style="margin: 10px 77px;" title="Click here to cancle verification"> Verified</a>
+                                            }else{
+                                                <a onclick="return isConfirm()" asp-action="PANVerify" asp-route-id="@item.Users.EmployeeCode" class="btn btn-primary" style="margin: 10px 43px;"> Click here to Verify</a>
+                                            }
+                                            <button type="button" class="btn btn-primary" data-url="@item.PanUrl" data-doc="@item.Users.PAN" data-toggle="modal" data-target="#exampleModal" style="margin: 10px 85px;">
+                                            View
+                                            </button>
+                                            }else{
+                                                <label>No Content</label>
+                                            }
+                                        </td>
+                                        <td>
+                                            <h3>@item.Users.AadhaarNo</h3>
+                                            <embed src='@item.AadhaarUrl' width="200" height="300" /> <br/>
+                                            @if(item.Users.AadhaarNo!=null){
+                                            @if(item.Users.IsAadhaarConfirmed){
+                                                <a onclick="return isConfirm()" asp-action="AADHAAR_CancleVarify" asp-route-id="@item.Users.EmployeeCode" class="btn btn-warning" style="margin: 10px 77px;" title="Click here to cancle verification"> Verified</a>
+                                            }else{
+                                                <a onclick="return isConfirm()" asp-action="AADHAARVerify" asp-route-id="@item.Users.EmployeeCode" class="btn btn-primary" style="margin: 10px 43px;"> Click here to Verify</a>
+                                            }
+                                            <button type="button" class="btn btn-primary" data-url="@item.AadhaarUrl" data-doc="@item.Users.AadhaarNo" data-toggle="modal" data-target="#exampleModal" style="margin: 10px 85px;">
+                                            View
+                                            </button>
+                                            }else{
+                                                <label>No Content</label>
+                                            }
+                                        </td>
+                                        <td>
+                                            <h3>@item.Users.HighestQualification</h3>
+                                            <embed src='@item.DegreeUrl' width="200" height="300"><br/>
+                                            @if(item.Users.HighestQualification!=null){
+                                            @if(item.Users.IsDegreeConfirmed){
+                                                <a onclick="return isConfirm()" asp-action="DEGREE_CancleVarify" asp-route-id="@item.Users.EmployeeCode" class="btn btn-warning" style="margin: 10px 77px;" title="Click here to cancle verification"> Verified</a>
+                                            }else{
+                                                <a onclick="return isConfirm()" asp-action="DEGREEVerify" asp-route-id="@item.Users.EmployeeCode" class="btn btn-primary" style="margin: 10px 43px;"> Click here to Verify</a>
+                                            }
+                                            <button type="button" class="btn btn-primary" data-url="@item.DegreeUrl" data-doc="@item.Users.HighestQualification" data-toggle="modal" data-target="#exampleModal" style="margin: 10px 85px;">
+                                            View
+                                            </button>
+                                            }else{
+                                                <label>No Content</label>
+                                            }
+                                        </td>
+                                        
+                                    </tr>
+                                    count++;
+                                }
+                            </tbody>
+                    </table>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Doc</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        @* <iframe class="docFrame" width="500" height="700"></iframe> *@
+        <iframe class="docFrame" width="560" height="500"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>        
+      </div>
+    </div>
+  </div>
+</div>

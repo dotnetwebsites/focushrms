@@ -1,0 +1,143 @@
+@model ApplicationUserViewModel
+
+@{
+    ViewData["Title"] = "Payslip";
+    ViewData["PageTitle"] = "Payslip";
+}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-bd lobidrag">
+
+            <div class="panel-body">
+
+                <div class="table-responsive">
+                    <div class="col-lg-6">
+                        <img src="~/assets/dist/img/logo.png" class="img-responsive m-t-20" width="200" height="60">
+                    </div>
+                    <div class="col-lg-6 text-right">
+                        <h4>FOCUS HR SOLUTIONS</h4>
+                        <p># 6-3-853/8, Pathrika Nagar,</p>
+                        <p> Madhapur, Hi-Tech City, Hyderabad - 81.</p>
+                        <p>URL:<a href="http://www.focushrsolutions.com/"
+                                style="color: #020a0f;">www.focushrsolutions.com</a> </p>
+                        <p>Mail ID:<a href="mailto:info@focushrsolutions.com"
+                                style="color: #020a0f;">info@focushrsolutions.com</a> </p>
+                        <a asp-action="PrintPage" target="_blank" asp-route-id="@Model.Payslip?.Id" class="btn btn-primary">
+                            <i class="fa fa-print"></i> Print
+                        </a>                        
+                    </div>
+                    <table id="dataTableExample1" class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr class="info">
+                                <th colspan="4" style="text-align: center;">SALARY SLIP FOR THE MONTH -
+                                    @Model.Payslip?.Month.ToUpper() @Model.Payslip?.Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Employee Name:</td>
+                                <td>@Model.User?.FullName</td>
+                                <td>Bank A/C Number:</td>
+                                <td>@Model.Account?.AccountNo</td>
+                            </tr>
+                            <tr>
+                                <td>Employee ID:</td>
+                                <td>@Model.User?.EmployeeCode</td>
+                                <td>PAN Number:</td>
+                                <td>@Model.User?.PAN</td>
+                            </tr>
+                            <tr>
+                                <td>Designation:</td>
+                                <td>@Model.User?.Designation</td>
+                                <td>Aadhar Number:</td>
+                                <td>@Model.User?.AadhaarNo</td>
+                            </tr>
+                            <tr>
+                                <td>Department:</td>
+                                <td>@Model.User?.Department</td>
+                                <td>Net Days Payable:</td>
+                                <td>@Model.Payslip?.WorkingDays</td>
+                            </tr>
+                            <tr>
+                                <td>Date of Joining:</td>
+                                <td>@Model.User?.DateofJoining.ToString("dd-MMM-yyyy")</td>
+                                <td>Payable Month:</td>
+                                <td>@Model.Payslip?.Month</td>
+                            </tr>
+                            <tr>
+                                <td>Location:</td>
+                                <td>@Model.User?.WorkLocation</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <thead>
+                            <tr class="info">
+                                <th>Earnings</th>
+                                <th>Amt. (INR)</th>
+                                <th>Deductions</th>
+                                <th>Amt. (INR)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Basic Salary</td>
+                                <td>@Model.Payslip?.Basic</td>
+                                <td>Professional Tax</td>
+                                <td>@Model.Payslip?.TAX</td>
+                            </tr>
+                            <tr>
+                                <td>HRA</td>
+                                <td>@Model.Payslip?.HRA</td>
+                                <td>PF</td>
+                                <td>@Model.Payslip?.EmpEPF</td>
+                            </tr>
+                            <tr>
+                                <td>Transport Allowance</td>
+                                <td>@Model.Payslip?.TA</td>
+                                <td>ESI</td>
+                                <td>@Model.Payslip?.EmpESI</td>
+                            </tr>
+                            <tr>
+                                <td>Leave Travel Allowance</td>
+                                <td>@Model.Payslip?.LTA</td>
+                                <td>TDS</td>
+                                <td>@Model.Payslip?.TDS</td>
+                            </tr>
+                            <tr>
+                                <td>CEA</td>
+                                <td>@Model.Payslip?.CEA</td>
+                                <td>Other Deduction</td>
+                                <td>@Model.Payslip?.OtherDeduction</td>
+                            </tr>
+                            <tr>
+                                <td>Special Allowance</td>
+                                <td>@Model.Payslip?.SPL</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Arrears</td>
+                                <td>@Model.Payslip?.Arrears</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><b>Gross Earnings (A)</b></td>
+                                <td>@Model.Payslip?.MonthlyGross.ToString("#.00")</td>
+                                <td><b>Total Deductions (B)</b></td>
+                                <td>@Model.Payslip?.TotalDeductions.ToString("#.00")</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="text-align: right;"><b>Net Salary (A-B)</b></td>
+                                <td>@Model.Payslip?.TakeHome</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="text-align: center;">This is a system generated Payslip and hence company seal or
+                        signature not required</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,129 @@
+@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Add User";
+    ViewData["PageTitle"] = "Add New User";
+}
+
+
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="panel panel-bd ">
+            <div class="panel-body">
+                <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <partial name="_StatusMessage" model="Model.StatusMessage" />
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="form-group ">
+                    <label class="m-b-15">Add New Employee</label>
+                    </div>
+                    <div class="form-group ">                                  
+                        <div class=" input-group ">
+                        <span class="input-group-addon">
+                        <i class="fa fa-envelope" style="color: #fff;"></i>
+                        </span>
+                        <input asp-for="Input.EmployeeCode" class="form-control" placeholder="EmployeeCode"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4" style="padding-left: 0px;">
+                        <div class=" input-group ">
+                        <span class="input-group-addon">
+                        <i class="fa fa-user" style="color: #fff;"></i>
+                        </span>
+                        <input asp-for="Input.Firstname" class="form-control" placeholder="First Name"/>                                    
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <div class=" input-group col-md-12">
+                        <input asp-for="Input.Middlename" class="form-control" placeholder="Middle Name"/>
+                        </div>                
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <div class=" input-group col-md-12">
+                        <input asp-for="Input.Lastname" class="form-control" placeholder="Last Name"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">                                  
+                        <div class=" input-group ">
+                        <span class="input-group-addon">
+                        <i class="fa fa-envelope" style="color: #fff;"></i>
+                        </span>                                    
+                        <input asp-for="Input.Email" class="form-control" placeholder="Email"/>                                    
+                        </div>
+                        @* <span asp-validation-for="Input.Email" class="text-danger"></span> *@
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class=" input-group ">
+                        <span class="input-group-addon">
+                        <i class="fa fa-lock" style="color: #fff;"></i>
+                        </span>                                    
+                        <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Mobile No"/>                                    
+                        </div>
+                        @* <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span> *@
+                    </div>
+
+                    <div class="form-group">
+                        <div class=" input-group ">
+                        <span class="input-group-addon">
+                        <i class="fa fa-lock" style="color: #fff;"></i>
+                        </span>                                    
+                        <input asp-for="Input.Designation" class="form-control" placeholder="Designation"/>                                    
+                        </div>
+                        @* <span asp-validation-for="Input.Designation" class="text-danger"></span> *@
+                    </div>
+
+                    <div class="form-group">
+                        <div class=" input-group ">
+                        <span class="input-group-addon">
+                        <i class="fa fa-lock" style="color: #fff;"></i>
+                        </span>                                    
+                        <input asp-for="Input.DateOfJoining" class="form-control" placeholder="Date of Joining"/>                                    
+                        </div>
+                        @* <span asp-validation-for="Input.Designation" class="text-danger"></span> *@
+                    </div>
+
+                    <div class="form-group">
+                        <div class=" input-group ">
+                        <span class="input-group-addon">
+                        <i class="fa fa-map-marker" style="color: #fff;"></i>
+                        </span>                                    
+                        <select asp-for="Input.Department" class="form-control">
+                            <option>Collections</option>
+                            <option>Human Resources</option>
+                            <option>IT Administration</option>
+                        </select>
+                        </div>                    
+                    </div>
+
+                    <div class="form-group">
+                        <div class=" input-group ">
+                        <span class="input-group-addon">
+                        <i class="fa fa-map-marker" style="color: #fff;"></i>
+                        </span>                                    
+                        @* <input asp-for="Input.WorkLocation" class="form-control" placeholder="Work Location"/> *@
+                        <select asp-for="Input.WorkLocation" class="form-control">                        
+                            <option>Hyderabad</option>
+                            <option>Chennai</option>
+                            <option>Bangalore</option>
+                        </select>
+                        </div>
+                        @* <span asp-validation-for="Input.WorkLocation" class="text-danger"></span> *@
+                    </div>
+
+                    <div class="form-group text-right" style="position: absolute;bottom: -50px;right: 20px;">
+                        <button type="submit" class="btn btn-primary">Add Employee</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

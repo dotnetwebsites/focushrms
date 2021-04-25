@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    @* <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title> FocusHRMS</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" /> *@
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] - FOCUS HR SOLUTIONS</title>
+    <link rel="shortcut icon" href="~/assets/dist/img/favicon.png" type="image/x-icon">
+    <link href="~/assets/plugins/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/plugins/lobipanel/lobipanel.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/plugins/pace/flash.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/themify-icons/themify-icons.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/dist/css/stylecrm.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    
+    <style>        
+        .logOut {
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            position: relative;
+            right: 126px;
+            bottom: 12px;
+        }
+    </style>
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+            <nav class="navbar navbar-static-top">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <!-- Sidebar toggle button-->
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="pe-7s-angle-left-circle"></span>
+                    <span style="color: #020a0f;">@ViewData["PageTitle"]</span>
+                </a>
+
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown dropdown-user">
+                            <a href="#" class="dropdown-toggle">
+                                <img src="~/assets/dist/img/logo.png" class="img-responsive" width="200"
+                                    height="60"></a>
+
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="main-sidebar">
+            <div class="sidebar">
+                <ul class="sidebar-menu">
+                    <li class="m-b-20">
+                        <a href="" class="text-center ">
+                            
+                            @{
+                                if(Context.Request.Cookies["userProf"] != null && Context.Request.Cookies["userProf"].ToString() != ""){
+                                    <img src='@Context.Request.Cookies["userprof"].ToString()' alt="" class="img-circle" alt="" width="55" height="55">
+                                }else if(Context.Request.Cookies["gender"]!=null && Context.Request.Cookies["gender"].ToString() == "0"){
+                                    <img src="~/assets/dist/img/avatar2.png" alt="" class="img-circle" alt="" width="75" height="75">    
+                                }else {
+                                    <img src="~/assets/dist/img/avatar4.png" alt="" class="img-circle" alt="" width="75" height="75">
+                                }
+                            }
+
+                            
+                        </a>
+                        <p class="text-center m-b-20" style="font-size: 14px;color: white;font-weight: bold;">
+                            @if(Context.Request.Cookies["fullName"]!=null){
+                                <span>@Context.Request.Cookies["fullName"].ToString()</span>
+                            }
+                        </p>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">
+                            <i class="fa fa-home"></i> <span>Personal Information</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="Edit">
+                            <i class="fa fa-cog"></i> <span>Manage Profile</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Identity/Account/Manage/ChangePassword">
+                            <i class="fa fa-lock"></i> <span>Change Password</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="BankDetail">
+                            <i class="fa fa-university"></i> <span>Update Bank Detail</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Nominee" asp-action="Index">
+                            <i class="fa fa-user"></i> <span>Nominee Detail</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>                    
+                    <li>
+                        <a asp-action="Index" asp-controller="PaySlip">
+                            <i class="fa fa-money"></i> <span>Payslips</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
+                    @* <li>
+                        <a asp-action="Index" asp-controller="Offer">
+                            <i class="fa fa-file-text"></i> <span>Offer Letter</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li> *@
+                    <li>
+                        <a asp-action="Index" asp-controller="MyDocument">
+                            <i class="fa fa-file-pdf-o"></i> <span>My Documents</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
+
+                    @if (Context.Request.Cookies["role"]!=null && Context.Request.Cookies["role"].ToString() == "admin")
+                    {                                                 
+                        <li>
+                            <a asp-action="Verification" asp-controller="MyDocument">
+                                <i class="fa fa-check-circle"></i> <span>Document Verification</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-action="ManageEmployee" asp-controller="Home">
+                                <i class="fa fa-users"></i> <span>Manage Employee</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                        @* <li>
+                            <a asp-action="NewEmployee" asp-controller="Home">
+                                <i class="fa fa-users"></i> <span>Add New Employee</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li> *@
+                        <li>
+                            <a asp-action="Index" asp-controller="RoleManager">
+                                <i class="fa fa-key"></i> <span>Manage Role</span>
+                                <span class="pull-right-container">
+                                </span>
+                            </a>
+                        </li>
+                    }
+                    <li>
+                        <a href="javascript:;">
+                            <i class="fa fa-sign-out"></i>
+                            <span class="pull-right-container">
+                                <form asp-area="Identity" asp-page="/Account/Logout"
+                                    asp-route-returnUrl="/Identity/Account/Login">
+                                    <input type="submit" class="btn btn-link logOut" value="Log Out">
+                                             
+                                </form>
+                            </span>
+                        </a>
+                        <a style="display: none;" href="/Identity/Account/Logout">
+                            <i class="fa fa-sign-out"></i> <span>Log Out</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+        <div class="content-wrapper">
+            <section class="content">
+                @RenderBody()
+            </section>
+        </div>
+    </div>
+    <script src="~/assets/plugins/jQuery/jquery-1.12.4.min.js" type="text/javascript"></script>
+    <script src="~/assets/plugins/jquery-ui-1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="~/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/assets/plugins/lobipanel/lobipanel.min.js" type="text/javascript"></script>
+    <script src="~/assets/plugins/pace/pace.min.js" type="text/javascript"></script>
+    <script src="~/assets/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/assets/plugins/fastclick/fastclick.min.js" type="text/javascript"></script>
+    <script src="~/assets/dist/js/custom.js" type="text/javascript"></script>
+    <script src="~/assets/dist/js/dashboard.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    @* https://code.jquery.com/jquery-3.5.1.js *@
+
+    <script>
+        $(document).ready(function() {
+            $('.example').DataTable();
+        } );
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>

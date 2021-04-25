@@ -1,0 +1,115 @@
+@model Nominee
+@{
+    ViewData["Title"] = "Nominee Detail";
+    ViewData["PageTitle"] = "Nominee Detail";
+}
+
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="panel panel-bd ">
+            <div class="panel-body">
+                <form method="POST">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    @Html.AntiForgeryToken()
+                    
+                    <div class="form-group col-md-3">
+                        <label asp-for="NomineeName"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-user" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="NomineeName" class="form-control" placeholder="Nominee Name"/>
+                        </div>                          
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="DateOfBirth"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-calendar" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="DateOfBirth" class="form-control" placeholder="Date of Birth"/>
+                        </div>                          
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="Relation"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-users" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="Relation" class="form-control" placeholder="Relation "/>
+                        </div>             
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label asp-for="Contact"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-phone" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="Contact" class="form-control" placeholder="Contact"/>
+                        </div>             
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label asp-for="Address1"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-address-card-o" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="Address1" class="form-control" placeholder="@Html.DisplayNameFor(model=>model.Address1)"/>
+                        </div>             
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label asp-for="Address2"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-address-card-o" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="Address2" class="form-control" placeholder="@Html.DisplayNameFor(model=>model.Address2)"/>
+                        </div>             
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="City"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-map-marker" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="City" class="form-control" placeholder="City"/>
+                        </div>             
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="State"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-bank" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="State" class="form-control" placeholder="State"/>
+                        </div>             
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="Pincode"></label>
+                        <div class=" input-group col-md-12">
+                        <span class="input-group-addon">
+                        <i class="fa fa-map-pin" style="color: #fff!important;"></i>
+                        </span>
+                        <input asp-for="Pincode" class="form-control" placeholder="Pincode"/>
+                        </div>             
+                    </div>
+                   
+                    <div class="form-group col-md-12">
+                        <a asp-action="Index" class="btn btn-primary">Cancle</a>
+                        <input type="submit" class="btn btn-add" value="Save"/>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
